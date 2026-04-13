@@ -270,11 +270,12 @@ tianDegBoundedId (Number, Ring) := HashTable => opts -> (degBd, R) -> (
         basicDegBoundedId(degBd, H, Verbose => opts.Verbose, Coefficients => opts.Coefficients)
     );
 
-    -- merge the hashtables into one and remove omega parameters 
+    -- merge the hashtables into one
     idPairs := flatten for H in idTables list apply(keys H, i -> {sub(i, R), sub(H#i, R)});
     lParams := for e in edges(digraph(G)) list sub(l_(e_0, e_1), R);
     idHash := hashTable select(idPairs, i -> member(i_0, lParams));
-    if all(lParams, t -> member(t, keys idHash)) then return (true, idHash) else return (false, idHash)
+    finalHash := hashTable idPairs;
+    if all(lParams, t -> member(t, keys idHash)) then return (true, finalHash) else return (false, finalHash)
 )
 
 

@@ -26,9 +26,14 @@ B = bigraph(toList(1..n), A2);
 G = mixedGraph(D, B);
 degBd = 2;
 maxTime = 10;
-DegBoundedIdentification(G, degBd, maxTime)
 resGP = GarciaPuenteIdentification(G, maxTime)
 pairs resGP#1
+
+DegBoundedIdentification(G, degBd, maxTime). -- Note that this function first applies a tianDecomposition so the identification formulas are only for the components of the tian decomposition, not for the whole graph.
+
+-- r = basicDegBoundedId(degBd, G, Verbose => false)
+-- peek r
+-- Get even lower weighted degree (=3) as described in the example in the text (=5). 
 
 ---------------------------
 -- Example for Section 2
