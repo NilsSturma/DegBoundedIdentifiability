@@ -1,6 +1,6 @@
 # Degree-Bounded Identification via Adaptive Orderings
 
-This repository contains an implementation of the degree-bounded identfication algroithm developed by Pratik Misra, Benjamin Hollering and Nils Sturma. It can be used to verify rational identifiability of causal effects in linear structural equation models given by mixed graphs. The implementation is in Macaulay2, and the main function is `DegBoundedIdentification(G, degBd, maxTime)`, where `G` is a mixed graph of interest, `degBd` is the maximal degree and `maxTime` is the time limit for the algorithm. An example of how to run the algorithm is given by the following code snippet:
+This repository contains an implementation of the degree-bounded identfication algroithm developed by Pratik Misra, Benjamin Hollering and Nils Sturma. It can be used to verify rational identifiability of causal effects in linear structural equation models given by mixed graphs. The implementation is in Macaulay2, and the main function is `DegBoundedIdentification(G, degBd, maxTime)`, where `G` is a mixed graph of interest, `degBd` is the maximal degree and `maxTime` is the time limit for the algorithm. An example of how to run the algorithm is given by the following code snippet: 
 ```
 load ("DegBoundedIdentification.m2")
 M = {
@@ -26,6 +26,7 @@ degBd = 2;
 maxTime = 10;
 DegBoundedIdentification(G, degBd, maxTime)
 ```
+Note that, by default, `DegBoundedIdentification` first applies a Tian decomposition and returns the identification formulas for each component.
 
 To reproduce the experimental results in the paper, run:
 ```
