@@ -26,7 +26,7 @@ degBd = 2;
 maxTime = 10;
 DegBoundedIdentification(G, degBd, maxTime)
 ```
-Note that, by default, `DegBoundedIdentification` first applies a Tian decomposition and returns the identification formulas for each component.
+Note that `DegBoundedIdentification` first applies a Tian decomposition and returns the identification formulas for each component.
 
 To reproduce the experimental results in the paper, run:
 ```
