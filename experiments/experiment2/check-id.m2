@@ -9,9 +9,10 @@ n = 10;
 degBd = 5;
 maxTime = 10;
 diago = true;
+tian = true;
 filePath = "experiments/results/random-n10-0.2-10s.m2";
 
-results = compareIdentificationMethods(adjMatrices, n, degBd, maxTime, diago);
+results = compareIdentificationMethods(adjMatrices, n, degBd, maxTime, diago, tian);
 M = saveResults(results, filePath);
 M
 

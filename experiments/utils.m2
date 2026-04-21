@@ -8,11 +8,11 @@ GarciaPuenteIdentification = (G, maxTime) -> (
     ) else 
         return (false, new HashTable);
     
-    lambdas := for e in edges(digraph(G)) list sub(l_(e_0, e_1), R);
+    lambdas := for e in edges(digraph(G)) list (l_(e_0, e_1))_R;
     V := sort vertices(digraph(G));
     n := #V;
     w := trekLengthGrading R;
-    sigVars := flatten for i from 0 to n-1 list for j from i to n-1 list sub(s_(V_i, V_j),R);
+    sigVars := flatten for i from 0 to n-1 list for j from i to n-1 list (s_(V_i, V_j))_R;
 
     idHash := new MutableHashTable;
 
@@ -42,7 +42,7 @@ maxDeg = (idHash, R) -> (
     return maxdeg;
 );
 
-compareIdentificationMethods = (adjMatrices, n, degBd, maxTime, diago) -> (
+compareIdentificationMethods = (adjMatrices, n, degBd, maxTime, diago, tian) -> (
     results = {};
     
     for i from 0 to #adjMatrices - 1 do(
@@ -65,7 +65,7 @@ compareIdentificationMethods = (adjMatrices, n, degBd, maxTime, diago) -> (
         GPdeg = maxDeg(GPCompleteRes#1, R);
         
         -- Degree-Bounded
-        DegBd = elapsedTiming(DegBoundedIdentification(G, degBd, maxTime));
+        DegBd = elapsedTiming(DegBoundedIdentification(G, degBd, maxTime, tian));
         DegBdtime = DegBd#0;
         DegBdCompleteRes = DegBd#1;
         DegBdres = DegBdCompleteRes#0;

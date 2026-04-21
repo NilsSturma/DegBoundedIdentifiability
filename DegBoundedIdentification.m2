@@ -293,17 +293,26 @@ tianDegBoundedId (Number, MixedGraph) := HashTable => opts -> (degBd, G) -> (
 -------------------
 
 
-DegBoundedIdentification = (G, degBd, maxTime) -> (
+DegBoundedIdentification = (G, degBd, maxTime, tian) -> (
     R := gaussianRing(G, Coefficients => KK);
-    --if isIdentifiable(R) then (
-    try (
-        alarm maxTime; 
-        result = tianDegBoundedId(degBd, G, Verbose=>false);
-        return(result);
-    ) else 
-        return (false, new HashTable);
-    --) else 
-    --return (false, new HashTable)
+    if tian then(
+        try (
+            alarm maxTime; 
+            result = tianDegBoundedId(degBd, G, Verbose=>false);
+            return(result);
+        ) else 
+            return (false, new HashTable);
+    ) else
+        try (
+            alarm maxTime; 
+            result = basicDegBoundedId(degBd, G, Verbose=>false);
+            idPairs := apply(keys result, i -> {sub(i, R), sub(result#i, R)});
+            lParams := for e in edges(digraph(G)) list sub(l_(e_0, e_1), R);
+            idHash := hashTable select(idPairs, i -> member(i_0, lParams));
+            finalHash := hashTable idPairs;
+            if all(lParams, t -> member(t, keys idHash)) then return (true, finalHash) else return (false, finalHash)
+        ) else 
+            return (false, new HashTable);
 );
 
 end

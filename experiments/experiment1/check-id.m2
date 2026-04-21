@@ -9,9 +9,10 @@ n = 4;
 degBd = 5;
 maxTime = 60;
 diago = false;
+tian = true;
 filePath = "experiments/results/4-nodes.m2";
 
-results = compareIdentificationMethods(adjMatrices, n, degBd, maxTime, diago);
+results = compareIdentificationMethods(adjMatrices, n, degBd, maxTime, diago, tian);
 M = saveResults(results, filePath);
 M
 
